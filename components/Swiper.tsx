@@ -11,13 +11,13 @@ import { Virtual } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/virtual';
 
-import { JobProps, JobsProps } from '@/types';
+import { IJob, JobsProp } from '@/types';
 import JobDetail from './JobDetail';
 
-const Slider = ({jobs}:JobsProps) => {
+const Slider = ({jobs}:JobsProp) => {
 
   const [isOpen, setIsOpen] = useState(false);
-  const [job, setJob] = useState<JobProps>()
+  const [job, setJob] = useState<IJob>()
   
   return (
     <div>
@@ -31,7 +31,7 @@ const Slider = ({jobs}:JobsProps) => {
           slidesPerView: 4,
         },
       }}>
-      {jobs.map((job:JobProps) => (
+      {jobs.map((job:IJob) => (
         <SwiperSlide key={job.title} virtualIndex={job.title}>
           <div className="bg-white rounded-lg shadow-lg p-8 m-5">
             <h2 className="text-xl font-bold text-gray-800 mb-4 line-clamp-1">{job.title}</h2>

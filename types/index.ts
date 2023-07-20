@@ -1,8 +1,8 @@
-export interface JobProps {
+export interface IJob {
     id:number;
     title: string;
     description: string
 }
-export interface JobsProps {
-    jobs: JobProps[]
+export type JobsProp = {
+    jobs: IJob[]
 }

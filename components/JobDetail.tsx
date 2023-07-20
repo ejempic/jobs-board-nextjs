@@ -1,10 +1,11 @@
-import { JobProps } from '@/types'
+
 import { Fragment } from 'react'
 
 import { Transition, Dialog } from '@headlessui/react'
+import { IJob } from '@/types';
 
 interface JobDetailProp{
-  job?: JobProps;
+  job?: IJob;
   isOpen?: Boolean;
   closeModal: () => void;
 }
