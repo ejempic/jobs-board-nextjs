@@ -27,8 +27,8 @@ const Slider = ({jobs}:JobsProp) => {
         '480': {
           slidesPerView: 1,
         },
-        '1020': {
-          slidesPerView: 4,
+        '720': {
+          slidesPerView: 3,
         },
       }}>
       {jobs.map((job:IJob) => (
