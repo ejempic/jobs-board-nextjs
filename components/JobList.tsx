@@ -4,7 +4,7 @@ const JobList = ({ jobs }: JobsProp) => {
   return (
     <div className="flex flex-col mt-5">
       <hr />
-      <h1 className="font-bold text-xl my-4">Add new Job</h1>
+      <h1 className="font-bold text-xl my-4">Job List</h1>
       <div className="overflow-x-auto">
         <div className="w-full inline-block align-middle">
           <div className="overflow-hidden border rounded-lg">
