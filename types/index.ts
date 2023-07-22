@@ -8,5 +8,6 @@ export interface IJob extends IJobForm{
 }
 
 export type JobsProp = {
+    map(arg0: (job: IJob) => import("react").JSX.Element): import("react").ReactNode;
     jobs: IJob[]
 }

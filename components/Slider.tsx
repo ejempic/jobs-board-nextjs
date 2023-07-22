@@ -52,8 +52,7 @@ const Slider = ({ jobs }: JobsProp) => {
                     setIsOpen(true);
                   }}
                 >
-                  {" "}
-                  show more{" "}
+                  show more
                 </button>
                 <Link
                   href={{

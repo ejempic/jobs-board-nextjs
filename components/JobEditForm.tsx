@@ -1,19 +1,17 @@
 "use client";
 
-import { fetchJobs, saveJob } from "@/app/api/route";
-import { API_URL } from "@/constants";
+import { fetchJobs, updateJob } from "@/app/api/route";
 import { IJob } from "@/types";
 import { useState } from "react";
 
-type jobFormProps = {
+type jobEditFormProps = {
   setJobs: (arg: IJob[] | undefined) => void;
+  job: IJob;
+  closeModal: (arg: boolean) => void;
 };
 
-const JobForm = ({ setJobs }: jobFormProps) => {
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-  });
+const JobEditForm = ({ setJobs, job, closeModal }: jobEditFormProps) => {
+  const [formData, setFormData] = useState(job);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -25,23 +23,23 @@ const JobForm = ({ setJobs }: jobFormProps) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    saveJob(formData).then(() => {
-      const query = fetchJobs();
-      query.then((response) => {
+    updateJob(formData).then((res) => {
+      fetchJobs().then((response) => {
         setJobs(response.data as IJob[]);
       });
-    });
 
-    setFormData({ title: '', description: '' });
+      if (!res === false) {
+        closeModal(false);
+      }
+    });
   };
 
   return (
     <div>
       <hr />
-      <h1 className="font-bold text-xl my-4">Add new Job</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="title" className="block text-white font-bold mb-2">
+          <label htmlFor="title" className="block text-gray-500 font-bold my-2">
             Title
           </label>
           <input
@@ -57,7 +55,7 @@ const JobForm = ({ setJobs }: jobFormProps) => {
         <div className="mb-4">
           <label
             htmlFor="description"
-            className="block text-white font-bold mb-2"
+            className="block text-gray-500 font-bold mb-2"
           >
             Description
           </label>
@@ -80,4 +78,4 @@ const JobForm = ({ setJobs }: jobFormProps) => {
   );
 };
 
-export default JobForm;
+export default JobEditForm;

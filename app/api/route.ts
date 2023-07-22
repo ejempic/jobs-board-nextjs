@@ -1,5 +1,5 @@
 import { API_URL } from "@/constants";
-import { IJobForm } from "@/types";
+import { IJob, IJobForm } from "@/types";
 import axios from 'axios';
 
 export async function fetchJobs() {
@@ -43,5 +43,51 @@ export async function saveJob(formData:IJobForm){
     } else {
       alert(error)
     }
+
+    return false;
+  }
+}
+
+export async function updateJob(formData:IJob){
+  try {
+    const response = await axios.put(API_URL+formData.id,formData);
+
+    if (response.status !== 200) {
+      throw new Error('Failed to submit the form');
+    }
+
+    return true;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const err_res = error.response;
+
+      alert(err_res?.data.message)
+    } else {
+      alert(error)
+    }
+    
+    return false;
+  }
+}
+
+export async function deleteJob(job:IJob){
+  try {
+    const response = await axios.delete(API_URL+job.id);
+
+    if (response.status !== 200) {
+      throw new Error('Failed to submit the form');
+    }
+
+    return true;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const err_res = error.response;
+
+      alert(err_res?.data.message)
+    } else {
+      alert(error)
+    }
+    
+    return false;
   }
 }
